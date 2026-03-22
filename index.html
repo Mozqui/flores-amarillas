@@ -29,7 +29,6 @@ body {
     justify-content: center;
 }
 
-/* Tapa del sobre */
 .tapa {
     position: absolute;
     width: 100%;
@@ -40,7 +39,7 @@ body {
     transition: 1s;
 }
 
-/* Carta */
+/* CARTA */
 .carta {
     position: absolute;
     width: 260px;
@@ -63,15 +62,13 @@ p {
     color: #555;
 }
 
-/* FLORES */
+/* FLORES 🌻 */
 .flor {
     position: absolute;
     top: -60px;
+    font-size: 30px;
     animation: caer linear infinite;
-}
-
-.flor img {
-    width: 40px;
+    z-index: 10;
 }
 
 @keyframes caer {
@@ -83,6 +80,11 @@ p {
 </head>
 
 <body>
+
+<!-- 🎶 Música -->
+<audio id="musica" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
 
 <!-- SOBRE -->
 <div class="sobre" onclick="abrirCarta()">
@@ -101,7 +103,7 @@ p {
 </div>
 
 <script>
-// 💌 Abrir carta
+// 💌 Abrir carta + música
 function abrirCarta() {
     document.getElementById("tapa").style.transform = "rotateX(180deg)";
     
@@ -111,16 +113,18 @@ function abrirCarta() {
         carta.style.transform = "translate(-50%, -50%)";
     }, 500);
 
+    // 🎶 reproducir música
+    document.getElementById("musica").play();
+
     iniciarFlores();
 }
 
-// 🌷 Tulipanes amarillos
-const imagenTulipan = "https://cdn-icons-png.flaticon.com/512/616/616490.png";
+// 🌻 Crear flores (girasoles)
 function crearFlor() {
     const flor = document.createElement("div");
     flor.classList.add("flor");
 
-    flor.innerHTML = `<img src="${imagenTulipan}">`;
+    flor.innerHTML = "🌻";
 
     flor.style.left = Math.random() * window.innerWidth + "px";
     flor.style.animationDuration = (Math.random() * 3 + 3) + "s";
@@ -132,6 +136,7 @@ function crearFlor() {
     }, 6000);
 }
 
+// Iniciar lluvia de flores
 function iniciarFlores() {
     setInterval(crearFlor, 400);
 }
