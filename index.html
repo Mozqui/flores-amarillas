@@ -9,27 +9,50 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(#fff9c4, #ffe082);
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     overflow: hidden;
+}
+
+/* SOBRE */
+.sobre {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 150px;
+    background: #fbc02d;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tapa del sobre */
+.tapa {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fdd835;
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    transform-origin: top;
+    transition: 1s;
 }
 
 /* Carta */
 .carta {
     position: absolute;
+    width: 260px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    text-align: center;
-    animation: aparecer 2s ease;
-}
-
-@keyframes aparecer {
-    from {opacity: 0; transform: translate(-50%, -60%);}
-    to {opacity: 1; transform: translate(-50%, -50%);}
+    transform: translate(-50%, -200%);
+    opacity: 0;
+    transition: 1s;
 }
 
 h1 {
@@ -38,23 +61,22 @@ h1 {
 
 p {
     color: #555;
-    font-size: 18px;
 }
 
-/* Flores cayendo */
+/* FLORES */
 .flor {
     position: absolute;
-    top: -50px;
+    top: -60px;
     animation: caer linear infinite;
 }
 
 .flor img {
-    width: 35px;
+    width: 40px;
 }
 
 @keyframes caer {
     to {
-        transform: translateY(100vh);
+        transform: translateY(110vh) rotate(360deg);
     }
 }
 </style>
@@ -62,7 +84,14 @@ p {
 
 <body>
 
-<div class="carta">
+<!-- SOBRE -->
+<div class="sobre" onclick="abrirCarta()">
+    <div class="tapa" id="tapa"></div>
+    💌
+</div>
+
+<!-- CARTA -->
+<div class="carta" id="carta">
     <h1>🌷 Para mi Borreguita hermosa 💛</h1>
     <p>
         Las flores más preciosas para mi Borreguita hermosa 🌷💛<br><br>
@@ -72,25 +101,41 @@ p {
 </div>
 
 <script>
-// Crear flores cayendo
+// 💌 Abrir carta
+function abrirCarta() {
+    document.getElementById("tapa").style.transform = "rotateX(180deg)";
+    
+    setTimeout(() => {
+        const carta = document.getElementById("carta");
+        carta.style.opacity = "1";
+        carta.style.transform = "translate(-50%, -50%)";
+    }, 500);
+
+    iniciarFlores();
+}
+
+// 🌷 Tulipanes amarillos
+const imagenTulipan = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Yellow_tulip_flower.jpg/240px-Yellow_tulip_flower.jpg";
+
 function crearFlor() {
     const flor = document.createElement("div");
     flor.classList.add("flor");
 
-    flor.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/765/765674.png">';
+    flor.innerHTML = `<img src="${imagenTulipan}">`;
 
     flor.style.left = Math.random() * window.innerWidth + "px";
-    flor.style.animationDuration = (Math.random() * 3 + 2) + "s";
-    
+    flor.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
     document.body.appendChild(flor);
 
     setTimeout(() => {
         flor.remove();
-    }, 5000);
+    }, 6000);
 }
 
-// Generar flores continuamente
-setInterval(crearFlor, 300);
+function iniciarFlores() {
+    setInterval(crearFlor, 400);
+}
 </script>
 
 </body>
