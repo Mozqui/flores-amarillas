@@ -2,107 +2,95 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para ti 💛</title>
+<title>Carta para mi Borreguita 💛</title>
 
 <style>
 body {
     margin: 0;
-    height: 100vh;
-    background: linear-gradient(to top, #fff9c4, #ffe082);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 0;
+    background: linear-gradient(#fff9c4, #ffe082);
+    font-family: 'Arial', sans-serif;
     overflow: hidden;
-    font-family: Arial;
 }
 
-/* 🌷 tulipanes */
-.tulipan {
+/* Carta */
+.carta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    text-align: center;
+    animation: aparecer 2s ease;
+}
+
+@keyframes aparecer {
+    from {opacity: 0; transform: translate(-50%, -60%);}
+    to {opacity: 1; transform: translate(-50%, -50%);}
+}
+
+h1 {
+    color: #fbc02d;
+}
+
+p {
+    color: #555;
+    font-size: 18px;
+}
+
+/* Flores cayendo */
+.flor {
     position: absolute;
     top: -50px;
-    font-size: 28px;
     animation: caer linear infinite;
+}
+
+.flor img {
+    width: 35px;
 }
 
 @keyframes caer {
     to {
-        transform: translateY(110vh);
+        transform: translateY(100vh);
     }
 }
-
-/* 💌 sobre */
-.sobre {
-    width: 240px;
-    height: 160px;
-    background: #fbc02d;
-    position: relative;
-    cursor: pointer;
-    border-radius: 12px;
-}
-
-.tapa {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #f9a825;
-    transform-origin: top;
-    transition: 1s;
-}
-
-.carta {
-    position: absolute;
-    width: 210px;
-    height: 130px;
-    background: white;
-    top: 15px;
-    left: 15px;
-    border-radius: 12px;
-    text-align: center;
-    padding: 12px;
-    transform: translateY(100%);
-    transition: 1s;
-}
-
-.abierto .tapa {
-    transform: rotateX(180deg);
-}
-
-.abierto .carta {
-    transform: translateY(0);
-}
 </style>
-
 </head>
 
 <body>
 
-<!-- 💌 sobre -->
-<div class="sobre" onclick="abrir()">
-    <div class="tapa"></div>
-    <div class="carta">
-        <h2>Para mi Borreguita 💛</h2>
-        <p>
-            Las flores más preciosas para mi Borreguita hermosa 🌷💛<br><br>
-            Quiero que sepas que te amo hasta el infinito ♾️✨<br><br>
-            Siempre estarás en mi corazón 💖
-        </p>
-    </div>
+<div class="carta">
+    <h1>🌷 Para mi Borreguita hermosa 💛</h1>
+    <p>
+        Las flores más preciosas para mi Borreguita hermosa 🌷💛<br><br>
+        Te amo hasta el infinito y más allá ✨💛<br><br>
+        Eres la razón de mi sonrisa todos los días 😊
+    </p>
 </div>
 
 <script>
-function abrir() {
-    document.querySelector(".sobre").classList.toggle("abierto");
+// Crear flores cayendo
+function crearFlor() {
+    const flor = document.createElement("div");
+    flor.classList.add("flor");
 
-    // 🌷 crear tulipanes cayendo
-    for (let i = 0; i < 30; i++) {
-        let tulipan = document.createElement("div");
-        tulipan.className = "tulipan";
-        tulipan.innerHTML = "🌷";
-        tulipan.style.left = Math.random() * 100 + "vw";
-        tulipan.style.animationDuration = (3 + Math.random() * 5) + "s";
-        document.body.appendChild(tulipan);
-    }
+    flor.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/765/765674.png">';
+
+    flor.style.left = Math.random() * window.innerWidth + "px";
+    flor.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    
+    document.body.appendChild(flor);
+
+    setTimeout(() => {
+        flor.remove();
+    }, 5000);
 }
+
+// Generar flores continuamente
+setInterval(crearFlor, 300);
 </script>
 
 </body>
