@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti 🌼</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top, #fff9c4, #ffe082);
+    font-family: Arial, sans-serif;
+}
+
+.contenedor {
+    text-align: center;
+}
+
+.flor {
+    font-size: 60px;
+    animation: flotar 2s infinite alternate;
+}
+
+@keyframes flotar {
+    from { transform: translateY(0); }
+    to { transform: translateY(-15px); }
+}
+
+.carta {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    display: none;
+}
+
+button {
+    background: #fbc02d;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #f9a825;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+    <div class="flor">🌻🌻🌻</div>
+    <h2>Para ti 💛</h2>
+    <button onclick="abrirCarta()">Abrir carta</button>
+
+    <div class="carta" id="carta">
+        <p>
+            Hoy te doy estas flores amarillas 🌼<br><br>
+            No solo por ser bonitas…<br>
+            sino porque significan lo especial que eres para mí 💛<br><br>
+            Gracias por existir ✨
+        </p>
+    </div>
+</div>
+
+<script>
+function abrirCarta() {
+    document.getElementById("carta").style.display = "block";
+}
+</script>
+
+</body>
+</html>
